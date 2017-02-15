@@ -1,0 +1,17 @@
+name,version,name.1,wmc,dit,noc,cbo,rfc,lcom,ca,ce,npm,lcom3,loc,dam,moa,mfa,cam,ic,cbm,amc,max_cc,avg_cc,bug
+synapse,1,org.apache.synapse.core.axis2.TimeoutHandler,4,2,0,4,22,2,1,3,2,0.555555556,139,1,0,0.5,0.625,0,0,33,4,1.75,1
+synapse,1,org.apache.synapse.mediators.transform.XSLTMediator,15,2,0,17,68,43,2,15,9,0.825396825,473,0.777777778,0,0.315789474,0.223214286,0,0,29.93333333,10,1.8,1
+synapse,1,org.apache.synapse.mediators.transform.HeaderMediator,15,2,0,18,58,43,2,16,10,0.873015873,459,0.666666667,0,0.315789474,0.224489796,0,0,29,23,2.6667,1
+synapse,1,org.apache.synapse.config.xml.PropertyMediatorFactory,5,2,0,11,28,6,0,11,3,0.833333333,216,0.666666667,0,0.25,0.416666667,0,0,41.6,14,3.2,1
+synapse,1,org.apache.synapse.endpoints.AddressEndpoint,15,2,0,13,48,63,3,10,13,0.830357143,295,0.875,2,0.235294118,0.255102041,1,1,18.13333333,12,2,1
+synapse,1,org.apache.synapse.mediators.transform.FaultMediator,27,2,0,29,92,213,2,27,18,0.887362637,596,0.714285714,0,0.193548387,0.196153846,0,0,20.55555556,11,2.3704,2
+synapse,1,org.apache.synapse.config.xml.endpoints.AddressEndpointSerializer,6,1,0,15,38,7,1,14,3,0.733333333,336,0.666666667,0,0,0.35,0,0,54.5,18,4,1
+synapse,1,org.apache.synapse.SynapseServer,6,1,0,8,47,13,0,8,3,0.8,257,0.5,0,0,0.2,0,0,41.5,6,1.5,1
+synapse,1,org.apache.synapse.mediators.GetPropertyFunction,7,1,0,12,36,3,1,12,5,0.666666667,275,0.666666667,1,0,0.261904762,0,0,37.85714286,22,3.7143,2
+synapse,1,org.apache.synapse.core.axis2.Axis2SynapseEnvironment,9,1,0,17,39,30,1,16,7,0.90625,216,0.75,2,0,0.25,0,0,22.55555556,6,1.3333,1
+synapse,1,org.apache.synapse.core.SynapseEnvironment,5,1,0,13,5,10,11,3,5,2,5,0,0,0,0.45,0,0,0,1,1,1
+synapse,1,org.apache.synapse.core.axis2.Axis2FlexibleMEPClient,10,1,0,38,108,39,1,37,3,0.833333333,604,0.5,0,0,0.19047619,0,0,59.2,6,2.2,4
+synapse,1,org.apache.synapse.mediators.builtin.PropertyMediator,15,2,0,10,44,47,2,8,12,0.885714286,479,0.7,0,0.315789474,0.3,0,0,30.26666667,27,2.6,1
+synapse,1,org.apache.synapse.config.xml.endpoints.AddressEndpointFactory,9,1,0,11,58,28,1,10,4,0.75,465,0.666666667,1,0,0.25,0,0,50.33333333,30,4.5556,1
+synapse,1,org.apache.synapse.core.axis2.Axis2MessageContext,60,1,0,45,147,490,17,29,56,0.898305085,867,0.909090909,2,0,0.103954802,0,0,13.26666667,10,1.4667,1
+synapse,1,org.apache.synapse.core.axis2.SynapseCallbackReceiver,7,1,0,34,96,9,2,32,3,0.833333333,527,0.75,0,0,0.361111111,0,0,73.71428571,20,4.2857,1
