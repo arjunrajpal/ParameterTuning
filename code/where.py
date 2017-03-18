@@ -560,5 +560,3 @@ def _whereTiming():
         t1 = timing(lambda: where(m, pop, slots), 10)
         t2 = timing(lambda: allPairs(pop), 10)
         print max, t1, t2, int(100 * t2 / t1)
-
-_whereTiming()

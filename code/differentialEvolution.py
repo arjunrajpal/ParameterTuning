@@ -18,11 +18,12 @@ def random_forest(a,b,c,d, candidate):
     return p
 
 def score(candidate):
-    # antV0
-    f1 = pd.read_csv("../final_dataset/ant/1.csv", delimiter=",")
+    # antV1
+
+    f1 = pd.read_csv("../final_dataset/ant/2.csv", delimiter=",")
     df1 = pd.DataFrame(f1)
 
-    f2 = pd.read_csv("../final_dataset/ant/3.csv", delimiter=",")
+    f2 = pd.read_csv("../final_dataset/ant/4.csv", delimiter=",")
     df2 = pd.DataFrame(f2)
 
     # Training Set
