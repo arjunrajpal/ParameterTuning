@@ -3,7 +3,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
 import pandas as pd
 import numpy as np
-from sklearn.metrics import precision_score,accuracy_score
+from sklearn.metrics import precision_score,accuracy_score, f1_score
 import matplotlib.pyplot as plt
 
 precision_lr =[]
@@ -25,6 +25,8 @@ def random_forest(a,b,c,d):
     pred = rf.predict(c)
     # print "Predicted Matrix : "  + str(pred)
     p = precision_score(d, pred, average='macro')
+    f = f1_score(d, pred, average='macro')
+    # print f
     precision_rf.append(p * 100)
 
 def cart(a,b,c,d):
@@ -37,10 +39,10 @@ def cart(a,b,c,d):
     precision_ct.append(p * 100)
 
 # antV0
-f1 = pd.read_csv("../final_dataset/ant/1.csv", delimiter = ",")
+f1 = pd.read_csv("../final_dataset_untuned/ant/antV0/1.csv", delimiter = ",")
 df1 = pd.DataFrame(f1)
 
-f2 = pd.read_csv("../final_dataset/ant/3.csv", delimiter = ",")
+f2 = pd.read_csv("../final_dataset_untuned/ant/antV0/3.csv", delimiter = ",")
 df2 = pd.DataFrame(f2)
 
 # Training Set
@@ -63,10 +65,10 @@ cart(X_Train, Y_Train, X_Test, Y_Test)
 
 # antV1
 
-f1 = pd.read_csv("../final_dataset/ant/2.csv", delimiter = ",")
+f1 = pd.read_csv("../final_dataset_untuned/ant/antV1/2.csv", delimiter = ",")
 df1 = pd.DataFrame(f1)
 
-f2 = pd.read_csv("../final_dataset/ant/4.csv", delimiter = ",")
+f2 = pd.read_csv("../final_dataset_untuned/ant/antV1/4.csv", delimiter = ",")
 df2 = pd.DataFrame(f2)
 
 # Training Set
@@ -90,10 +92,10 @@ cart(X_Train, Y_Train, X_Test, Y_Test)
 
 # antV2
 
-f1 = pd.read_csv("../final_dataset/ant/3.csv", delimiter = ",")
+f1 = pd.read_csv("../final_dataset_untuned/ant/antV2/3.csv", delimiter = ",")
 df1 = pd.DataFrame(f1)
 
-f2 = pd.read_csv("../final_dataset/ant/5.csv", delimiter = ",")
+f2 = pd.read_csv("../final_dataset_untuned/ant/antV2/5.csv", delimiter = ",")
 df2 = pd.DataFrame(f2)
 
 # Training Set
@@ -117,10 +119,10 @@ cart(X_Train, Y_Train, X_Test, Y_Test)
 
 # camelV0
 
-f1 = pd.read_csv("../final_dataset/camel/1.csv", delimiter = ",")
+f1 = pd.read_csv("../final_dataset_untuned/camel/camelV0/1.csv", delimiter = ",")
 df1 = pd.DataFrame(f1)
 
-f2 = pd.read_csv("../final_dataset/camel/3.csv", delimiter = ",")
+f2 = pd.read_csv("../final_dataset_untuned/camel/camelV0/3.csv", delimiter = ",")
 df2 = pd.DataFrame(f2)
 
 # Training Set
@@ -144,10 +146,10 @@ cart(X_Train, Y_Train, X_Test, Y_Test)
 
 # camelV1
 
-f1 = pd.read_csv("../final_dataset/camel/2.csv", delimiter = ",")
+f1 = pd.read_csv("../final_dataset_untuned/camel/camelV1/2.csv", delimiter = ",")
 df1 = pd.DataFrame(f1)
 
-f2 = pd.read_csv("../final_dataset/camel/4.csv", delimiter = ",")
+f2 = pd.read_csv("../final_dataset_untuned/camel/camelV1/4.csv", delimiter = ",")
 df2 = pd.DataFrame(f2)
 
 # Training Set
@@ -171,10 +173,10 @@ cart(X_Train, Y_Train, X_Test, Y_Test)
 
 # ivy
 
-f1 = pd.read_csv("../final_dataset/ivy/1.csv", delimiter = ",")
+f1 = pd.read_csv("../final_dataset_untuned/ivy/1.csv", delimiter = ",")
 df1 = pd.DataFrame(f1)
 
-f2 = pd.read_csv("../final_dataset/ivy/3.csv", delimiter = ",")
+f2 = pd.read_csv("../final_dataset_untuned/ivy/3.csv", delimiter = ",")
 df2 = pd.DataFrame(f2)
 
 # Training Set
@@ -198,10 +200,10 @@ cart(X_Train, Y_Train, X_Test, Y_Test)
 
 # jeditV0
 
-f1 = pd.read_csv("../final_dataset/jedit/1.csv", delimiter = ",")
+f1 = pd.read_csv("../final_dataset_untuned/jedit/jeditV0/1.csv", delimiter = ",")
 df1 = pd.DataFrame(f1)
 
-f2 = pd.read_csv("../final_dataset/jedit/3.csv", delimiter = ",")
+f2 = pd.read_csv("../final_dataset_untuned/jedit/jeditV0/3.csv", delimiter = ",")
 df2 = pd.DataFrame(f2)
 
 # Training Set
@@ -225,10 +227,10 @@ cart(X_Train, Y_Train, X_Test, Y_Test)
 
 # jeditV1
 
-f1 = pd.read_csv("../final_dataset/jedit/2.csv", delimiter = ",")
+f1 = pd.read_csv("../final_dataset_untuned/jedit/jeditV1/2.csv", delimiter = ",")
 df1 = pd.DataFrame(f1)
 
-f2 = pd.read_csv("../final_dataset/jedit/4.csv", delimiter = ",")
+f2 = pd.read_csv("../final_dataset_untuned/jedit/jeditV1/4.csv", delimiter = ",")
 df2 = pd.DataFrame(f2)
 
 # Training Set
@@ -252,10 +254,10 @@ cart(X_Train, Y_Train, X_Test, Y_Test)
 
 # jeditV2
 
-f1 = pd.read_csv("../final_dataset/jedit/3.csv", delimiter = ",")
+f1 = pd.read_csv("../final_dataset_untuned/jedit/jeditV2/3.csv", delimiter = ",")
 df1 = pd.DataFrame(f1)
 
-f2 = pd.read_csv("../final_dataset/jedit/5.csv", delimiter = ",")
+f2 = pd.read_csv("../final_dataset_untuned/jedit/jeditV2/5.csv", delimiter = ",")
 df2 = pd.DataFrame(f2)
 
 # Training Set
@@ -279,10 +281,10 @@ cart(X_Train, Y_Train, X_Test, Y_Test)
 
 # log4j
 
-f1 = pd.read_csv("../final_dataset/log4j/1.csv", delimiter = ",")
+f1 = pd.read_csv("../final_dataset_untuned/log4j/1.csv", delimiter = ",")
 df1 = pd.DataFrame(f1)
 
-f2 = pd.read_csv("../final_dataset/log4j/3.csv", delimiter = ",")
+f2 = pd.read_csv("../final_dataset_untuned/log4j/3.csv", delimiter = ",")
 df2 = pd.DataFrame(f2)
 
 # Training Set
@@ -306,10 +308,10 @@ cart(X_Train, Y_Train, X_Test, Y_Test)
 
 # lucene
 
-f1 = pd.read_csv("../final_dataset/lucene/1.csv", delimiter = ",")
+f1 = pd.read_csv("../final_dataset_untuned/lucene/1.csv", delimiter = ",")
 df1 = pd.DataFrame(f1)
 
-f2 = pd.read_csv("../final_dataset/lucene/3.csv", delimiter = ",")
+f2 = pd.read_csv("../final_dataset_untuned/lucene/3.csv", delimiter = ",")
 df2 = pd.DataFrame(f2)
 
 # Training Set
@@ -333,10 +335,10 @@ cart(X_Train, Y_Train, X_Test, Y_Test)
 
 # poiV0
 
-f1 = pd.read_csv("../final_dataset/poi/1.csv", delimiter = ",")
+f1 = pd.read_csv("../final_dataset_untuned/poi/poiV0/1.csv", delimiter = ",")
 df1 = pd.DataFrame(f1)
 
-f2 = pd.read_csv("../final_dataset/poi/3.csv", delimiter = ",")
+f2 = pd.read_csv("../final_dataset_untuned/poi/poiV0/3.csv", delimiter = ",")
 df2 = pd.DataFrame(f2)
 
 # Training Set
@@ -360,10 +362,10 @@ cart(X_Train, Y_Train, X_Test, Y_Test)
 
 # poiV1
 
-f1 = pd.read_csv("../final_dataset/poi/2.csv", delimiter = ",")
+f1 = pd.read_csv("../final_dataset_untuned/poi/poiV1/2.csv", delimiter = ",")
 df1 = pd.DataFrame(f1)
 
-f2 = pd.read_csv("../final_dataset/poi/4.csv", delimiter = ",")
+f2 = pd.read_csv("../final_dataset_untuned/poi/poiV1/4.csv", delimiter = ",")
 df2 = pd.DataFrame(f2)
 
 # Training Set
@@ -387,10 +389,10 @@ cart(X_Train, Y_Train, X_Test, Y_Test)
 
 # synapse
 
-f1 = pd.read_csv("../final_dataset/synapse/1.csv", delimiter = ",")
+f1 = pd.read_csv("../final_dataset_untuned/synapse/1.csv", delimiter = ",")
 df1 = pd.DataFrame(f1)
 
-f2 = pd.read_csv("../final_dataset/synapse/3.csv", delimiter = ",")
+f2 = pd.read_csv("../final_dataset_untuned/synapse/3.csv", delimiter = ",")
 df2 = pd.DataFrame(f2)
 
 # Training Set
@@ -414,10 +416,10 @@ cart(X_Train, Y_Train, X_Test, Y_Test)
 
 # velocity
 
-f1 = pd.read_csv("../final_dataset/velocity/1.csv", delimiter = ",")
+f1 = pd.read_csv("../final_dataset_untuned/velocity/1.csv", delimiter = ",")
 df1 = pd.DataFrame(f1)
 
-f2 = pd.read_csv("../final_dataset/velocity/3.csv", delimiter = ",")
+f2 = pd.read_csv("../final_dataset_untuned/velocity/3.csv", delimiter = ",")
 df2 = pd.DataFrame(f2)
 
 # Training Set
@@ -441,10 +443,10 @@ cart(X_Train, Y_Train, X_Test, Y_Test)
 
 # xercesV0
 
-f1 = pd.read_csv("../final_dataset/xerces/1.csv", delimiter = ",")
+f1 = pd.read_csv("../final_dataset_untuned/xerces/xercesV0/1.csv", delimiter = ",")
 df1 = pd.DataFrame(f1)
 
-f2 = pd.read_csv("../final_dataset/xerces/3.csv", delimiter = ",")
+f2 = pd.read_csv("../final_dataset_untuned/xerces/xercesV0/3.csv", delimiter = ",")
 df2 = pd.DataFrame(f2)
 
 # Training Set
@@ -468,10 +470,10 @@ cart(X_Train, Y_Train, X_Test, Y_Test)
 
 # xercesV1
 
-f1 = pd.read_csv("../final_dataset/xerces/2.csv", delimiter = ",")
+f1 = pd.read_csv("../final_dataset_untuned/xerces/xercesV1/2.csv", delimiter = ",")
 df1 = pd.DataFrame(f1)
 
-f2 = pd.read_csv("../final_dataset/xerces/4.csv", delimiter = ",")
+f2 = pd.read_csv("../final_dataset_untuned/xerces/xercesV1/4.csv", delimiter = ",")
 df2 = pd.DataFrame(f2)
 
 # Training Set
@@ -497,7 +499,7 @@ dataset = []
 for i in range(1,18):
     dataset.append(i)
 
-print precision_lr, precision_rf, precision_ct
+print (precision_lr, precision_rf, precision_ct)
 
 plt.plot(dataset, precision_lr, 'r', label='Untuned Logistic Regression')
 plt.plot(dataset, precision_rf, 'g', label='Untuned Random Forest')

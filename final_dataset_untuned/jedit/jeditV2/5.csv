@@ -1,0 +1,12 @@
+name,version,name.1,wmc,dit,noc,cbo,rfc,lcom,ca,ce,npm,lcom3,loc,dam,moa,mfa,cam,ic,cbm,amc,max_cc,avg_cc,bug
+jEdit,4.3,org.gjt.sp.jedit.bufferset.BufferSet,18,1,0,16,55,0,11,8,13,0.647058824,687,1,0,0,0.426470588,0,0,36.88888889,12,2.5,1
+jEdit,4.3,org.gjt.sp.jedit.gui.statusbar.RectSelectWidgetFactory,2,1,0,4,4,1,0,4,2,2,12,0,0,0,0.75,0,0,5,1,0.5,1
+jEdit,4.3,org.gjt.sp.jedit.help.HelpViewer,22,6,0,23,115,167,10,22,11,0.813852814,561,1,4,0.971385542,0.188311688,1,1,24,8,1.3636,2
+jEdit,4.3,org.gjt.sp.jedit.buffer.JEditBuffer,119,1,1,90,279,5913,72,28,97,0.886101695,4045,0.84,8,0,0.103641457,0,0,32.78151261,17,2.9076,1
+jEdit,4.3,org.gjt.sp.jedit.View,90,6,0,234,339,3509,207,55,65,0.969731713,3081,0.551020408,12,0.878746594,0.069082126,3,13,32.68888889,10,2.7667,1
+jEdit,4.3,org.gjt.sp.jedit.EditPane,39,5,0,79,244,231,46,48,30,0.702631579,1783,1,8,0.945007236,0.118343195,1,2,44.46153846,27,4.0513,1
+jEdit,4.3,org.gjt.sp.jedit.gui.statusbar.OverwriteWidgetFactory,2,1,0,4,4,1,0,4,2,2,12,0,0,0,0.75,0,0,5,1,0.5,1
+jEdit,4.3,org.gjt.sp.jedit.textarea.TextAreaPainter,55,4,0,31,132,1121,23,15,52,0.969907407,956,0.15,6,0.924177396,0.121082621,3,20,15.65454545,9,1.5091,1
+jEdit,4.3,org.gjt.sp.jedit.gui.statusbar.MultiSelectWidgetFactory,2,1,0,4,4,1,0,4,2,2,12,0,0,0,0.75,0,0,5,1,0.5,1
+jEdit,4.3,org.gjt.sp.jedit.help.HelpTOCPanel,12,5,0,18,61,36,6,16,3,0.690909091,377,1,1,0.983433735,0.3,0,0,30,6,1.5,1
+jEdit,4.3,org.gjt.sp.jedit.gui.statusbar.WrapWidgetFactory,2,1,0,4,4,1,0,4,2,2,12,0,0,0,0.75,0,0,5,1,0.5,1
