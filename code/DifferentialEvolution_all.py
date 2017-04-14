@@ -1,4 +1,5 @@
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import precision_score
 import pandas as pd
 import numpy as nump
@@ -8,9 +9,10 @@ from data import data
 # np, f, cr, life, Goal, noOfParameters = 10, 0.75, 0.3, 5, [], 0 #input
 # sBest = [] #ouput
 
-def random_forest(a,b,c,d, candidate):
+
+# Runs Random Forest on the dataset using parameters present in candidate
+def random_forest(a,b,c,d,candidate):
     # print candidate
-    print candidate
     rf = RandomForestClassifier(max_features=candidate['tunings'][0], max_leaf_nodes=candidate['tunings'][1], min_samples_split=candidate['tunings'][2], min_samples_leaf=candidate['tunings'][3], n_estimators=candidate['tunings'][4])
     rf.fit(a,b)
     pred = rf.predict(c)
@@ -19,29 +21,36 @@ def random_forest(a,b,c,d, candidate):
 
     return p
 
-def cart(a,b,c,d):
-    ct = DecisionTreeClassifier()
-    ct.classes_ = np.arange(1,29)
-    ct.fit(a,b)
-    pred = ct.predict(c)
-    # print "Predicted Matrix : "  + str(pred)
-    p = precision_score(d, pred, average='macro')
-    precision_ct.append(p * 100)
 
-def runAlgo(X_Train, Y_Train, X_Test, Y_Test, candidate, mlalgo):
+# Runs CART on the dataset
+# def cart(a,b,c,d):
+#     ct = DecisionTreeClassifier()
+#     ct.classes_ = nump.arange(1,29)
+#     ct.fit(a,b)
+#     pred = ct.predict(c)
+#     # print "Predicted Matrix : "  + str(pred)
+#     p = precision_score(d, pred, average='macro')
+#
+#     return p
 
-    if mlalgo == 0:
-        p = random_forest(X_Train, Y_Train, X_Test, Y_Test, candidate)
-    elif mlalgo == 1:
-        p = cart(X_Train, Y_Train, X_Test, Y_Test, candidate)
+# Determines which algo to run depending on the value of mlago
+# def runAlgo(X_Train, Y_Train, X_Test, Y_Test, candidate, mlalgo):
+#
+#     if mlalgo == 0:
+#         p = random_forest(X_Train, Y_Train, X_Test, Y_Test, candidate)
+#     elif mlalgo == 1:
+#         p = cart(X_Train, Y_Train, X_Test, Y_Test, candidate)
+#
+#     return p
 
-    return p
 
+# Limits the newly computed value to the legal range min...max of that parameter (decision)
 def trim(decision, computed):
     return max(decision['high'], min(computed, decision['low']))
 
-def score(candidate, datasets):
 
+# Retrieves the appropriate dataset from readDataset function present in data.py and passes the Training and Testing dataset to Random Forest function
+def score(candidate, datasets):
 
     # # antV1
     #
@@ -73,7 +82,7 @@ def score(candidate, datasets):
 
     return p
 
-
+# Initialises the population such that each parameter of each candidate in the population gets a random value from the parameter's valid range
 def initialisePopulation(np,noOfParameters):
     population = []
 
@@ -98,6 +107,8 @@ def initialisePopulation(np,noOfParameters):
 
     return population
 
+
+# Returns three random candidates from a population of size 10 such that neither of them is equal to the target candidate i.e old
 def threeOthers(pop,old):
 
     while(1):
@@ -113,12 +124,15 @@ def threeOthers(pop,old):
     return pop[three[0]]['tunings'], pop[three[1]]['tunings'], pop[three[2]]['tunings']
 
 
+# Returns True if the newly computed population is different than the old generation otherwise False
 def improve(population, oldGeneration):
     if population != oldGeneration:
         return True
     else:
         return False
 
+
+# Compares the precision score of each candidate in the population and returns the candidate with the highest precision score as the Best Solution
 def getBestSolution(population):
     max = -1
     bestSolution = {}
@@ -132,6 +146,7 @@ def getBestSolution(population):
     return bestSolution
 
 
+# Creates a mutant whose each parameter value is either taken from the target candidate(old) or is computed using (a+f*(b-c)) depending on value of cr
 def extrapolate(old, pop, cr, f, noOfParameters):
     a, b, c = threeOthers(pop,old)
     newf = []
@@ -171,6 +186,8 @@ def extrapolate(old, pop, cr, f, noOfParameters):
 
     return newCandidate
 
+
+# Performs Differential Evolution
 def DE(np, f, cr, life, noOfParameters, datasets):
 
     sBest = []
@@ -204,11 +221,14 @@ def DE(np, f, cr, life, noOfParameters, datasets):
         # print sBest
     return sBest
 
-# initialisePopulation(10,6)
 
+# initialisePopulation(10,6)
 # print "Best Parameters for Random Forest", DE(10, 0.75, 0.3, 5, 5)
 
+# Sets the valid range for each parameter of the machine learning algorithm
 algoParameters = [{'low':0.01, 'high':1}, {'low':0.01, 'high':1}, {'low':1, 'high':50}, {'low':2, 'high':20}, {'low':1, 'high':20}, {'low':50, 'high':150}]
+
+# Invokes DE
 for datasets in range(17):
     parameters = DE(10, 0.75, 0.3, 5, 5, datasets)
 
