@@ -259,7 +259,6 @@ datasets = int(datasets)
 parameters = DE(10, 0.75, 0.3, 5, 5, datasets)
 
 print "\nBest Parameters for Random Forest in dataset ",datasets," are ", parameters
-print score_test(parameters, datasets)
 
 
 
