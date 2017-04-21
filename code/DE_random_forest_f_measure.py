@@ -1,12 +1,11 @@
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.metrics import precision_score
+from sklearn.metrics import f1_score
 import pandas as pd
 import numpy as nump
 import math
 from data import data
 import random
-from prettytable import PrettyTable
 
 # np, f, cr, life, Goal, noOfParameters = 10, 0.75, 0.3, 5, [], 0 #input
 # sBest = [] #ouput
@@ -18,21 +17,22 @@ global_best= []
 
 
 # Runs Random Forest on the dataset using parameters present in candidate
-def cart(a, b, c, d, candidate):
-    print "Candidate in Cart : " + str(candidate)
+def random_forest(a, b, c, d, candidate):
+    print "Candidate in Random Forest : " + str(candidate)
     # value_threshold = nump.random.uniform(0.01, 1)
     # print "Threshold :" + str(value_threshold)
     print "Threshold :" + str(candidate["tunings"][0])
     print "Max feature : " + str(candidate["tunings"][1])
-    print "Min sample split : " + str(candidate["tunings"][2])
-    print "Min samples leaf : " + str(candidate["tunings"][3])
-    print "Max depth : " + str(candidate["tunings"][4])
+    print "Max leaf nodes : " + str(candidate["tunings"][2])
+    print "Min sample split : " + str(candidate["tunings"][3])
+    print "Min samples leaf : " + str(candidate["tunings"][4])
+    print "Max no of estimators : " + str(candidate["tunings"][5])
 
-    ct = DecisionTreeClassifier(max_depth=candidate["tunings"][4], min_samples_split=candidate["tunings"][2], min_samples_leaf=candidate["tunings"][3], max_features=candidate["tunings"][1], min_impurity_split=candidate["tunings"][0])
-    ct.fit(a, b)
-    pred = ct.predict(c)
+    rf = RandomForestClassifier(n_estimators=candidate['tunings'][5], min_samples_split=candidate['tunings'][3], min_samples_leaf=candidate['tunings'][4], max_features = candidate['tunings'][1], max_leaf_nodes = candidate['tunings'][2], min_impurity_split=candidate["tunings"][0])
+    rf.fit(a, b)
+    pred = rf.predict(c)
     # print "Predicted Matrix : "  + str(pred)
-    p = precision_score(d, pred, average='weighted')
+    p = f1_score(d, pred, average='weighted')
 
     return p
 
@@ -57,7 +57,7 @@ def score(candidate, datasets):
     # print X_Test
     # print Y_Test
 
-    p = cart(X_Train, Y_Train, X_Test, Y_Test, candidate)
+    p = random_forest(X_Train, Y_Train, X_Test, Y_Test, candidate)
 
     return p
 
@@ -80,7 +80,7 @@ def score_test(candidate, datasets):
     # print X_Test
     # print Y_Test
 
-    p = cart(X_Train, Y_Train, X_Test, Y_Test, candidate)
+    p = random_forest(X_Train, Y_Train, X_Test, Y_Test, candidate)
 
     return p
 
@@ -103,17 +103,21 @@ def initialisePopulation(np,noOfParameters):
         print "Max Feature selected for index " + str(i) + " : " + str(max_feature)
         tunings.append(max_feature)
 
-        min_sample_split = int(nump.random.uniform(algoParameters[2]['low'], algoParameters[2]['high']))
-        print "Max Leaf Nodes for index " + str(i) + " : " + str(min_sample_split)
+        max_leaf_nodes = int(nump.random.uniform(algoParameters[2]['low'], algoParameters[2]['high']))
+        print "Max Leaf Nodes for index " + str(i) + " : " + str(max_leaf_nodes)
+        tunings.append(max_leaf_nodes)
+
+        min_sample_split = int(nump.random.uniform(algoParameters[3]['low'], algoParameters[3]['high']))
+        print "Min sample split for index " + str(i) + " : " + str(min_sample_split)
         tunings.append(min_sample_split)
 
-        min_samples_leaf = int(nump.random.uniform(algoParameters[3]['low'], algoParameters[3]['high']))
-        print "Min sample split for index " + str(i) + " : " + str(min_samples_leaf)
+        min_samples_leaf = int(nump.random.uniform(algoParameters[4]['low'], algoParameters[4]['high']))
+        print "Min samples leaf for index " + str(i) + " : " + str(min_samples_leaf)
         tunings.append(min_samples_leaf)
 
-        max_depth = int(nump.random.uniform(algoParameters[4]['low'], algoParameters[4]['high']))
-        print "Min samples leaf for index " + str(i) + " : " + str(max_depth)
-        tunings.append(max_depth)
+        n_estimators = int(nump.random.uniform(algoParameters[5]['low'], algoParameters[5]['high']))
+        print "n_estimators for index " + str(i) + " : " + str(n_estimators) + "\n"
+        tunings.append(n_estimators)
 
         # population[i]['tunings']
         # print tunings[4]
@@ -152,8 +156,8 @@ def improve(population, oldGeneration):
         return False
 
 
-# Compares the precision score of each candidate in the population and
-# returns the candidate with the highest precision score as the Best Solution
+# Compares the f1_score of each candidate in the population and
+# returns the candidate with the highest f1_score as the Best Solution
 def getBestSolution(population):
     max = -1
     bestSolution = {}
@@ -278,27 +282,14 @@ def DE(np, f, cr, life, noOfParameters, datasets):
     return s_Best
 
 # Sets the valid range for each parameter of the machine learning algorithm
-algoParameters = [{'low': 0, 'high': 1},{'low': 1, 'high': 17}, {'low': 2, 'high': 20}, {'low': 1, 'high': 20}, {'low': 1, 'high': 50}]
+algoParameters = [{'low': 0.01, 'high': 1},{'low': 1, 'high': 17}, {'low': 2, 'high': 50}, {'low': 2, 'high': 20}, {'low': 1, 'high': 20}, {'low': 50, 'high': 150}]
 
 # Invokes DE
 
 datasets = raw_input("Enter dataset : ")
 datasets = int(datasets)
 
-parameters = DE(10, 0.75, 0.3, 5, 5, datasets)
+parameters = DE(10, 0.75, 0.3, 5, 6, datasets)
 
-print "\nBest Parameters for Cart in dataset ",datasets," are ", parameters
+print "\nBest Parameters for Random Forest in dataset ",datasets," are ", parameters
 print score_test(parameters, datasets)
-
-# dataset = ['antV0', 'antV1', 'antV2', 'camelV0', 'camelV1', 'ivy', 'jeditV0', 'jeditV1', 'jeditV2', 'log4j', 'lucene', 'poiV0', 'poiV1', 'synapse', 'velocity', 'xercesV0', 'xercesV1']
-#
-# sequence = ["Dataset", "Precision", "Best Parameters"]
-# t = PrettyTable(sequence)
-#
-# for datasets in nump.arange(0,17):
-#
-#     parameters = DE(10, 0.75, 0.3, 5, 5, datasets)
-#
-#     t.add_row([dataset[datasets], score_test(parameters, datasets), parameters])
-#
-# print t

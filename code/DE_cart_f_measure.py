@@ -1,6 +1,6 @@
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.metrics import precision_score
+from sklearn.metrics import f1_score
 import pandas as pd
 import numpy as nump
 import math
@@ -32,7 +32,7 @@ def cart(a, b, c, d, candidate):
     ct.fit(a, b)
     pred = ct.predict(c)
     # print "Predicted Matrix : "  + str(pred)
-    p = precision_score(d, pred, average='weighted')
+    p = f1_score(d, pred, average='weighted')
 
     return p
 
@@ -152,8 +152,8 @@ def improve(population, oldGeneration):
         return False
 
 
-# Compares the precision score of each candidate in the population and
-# returns the candidate with the highest precision score as the Best Solution
+# Compares the f1_score of each candidate in the population and
+# returns the candidate with the highest f1_score as the Best Solution
 def getBestSolution(population):
     max = -1
     bestSolution = {}
@@ -292,7 +292,7 @@ print score_test(parameters, datasets)
 
 # dataset = ['antV0', 'antV1', 'antV2', 'camelV0', 'camelV1', 'ivy', 'jeditV0', 'jeditV1', 'jeditV2', 'log4j', 'lucene', 'poiV0', 'poiV1', 'synapse', 'velocity', 'xercesV0', 'xercesV1']
 #
-# sequence = ["Dataset", "Precision", "Best Parameters"]
+# sequence = ["Dataset", "f1_score", "Best Parameters"]
 # t = PrettyTable(sequence)
 #
 # for datasets in nump.arange(0,17):

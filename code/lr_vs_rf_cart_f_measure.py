@@ -1,7 +1,7 @@
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.metrics import precision_score,accuracy_score
+from sklearn.metrics import f1_score,accuracy_score
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -9,12 +9,9 @@ from prettytable import PrettyTable
 
 dataset = ['antV0', 'antV1', 'antV2', 'camelV0', 'camelV1', 'ivy', 'jeditV0', 'jeditV1', 'jeditV2', 'log4j', 'lucene', 'poiV0', 'poiV1', 'synapse', 'velocity', 'xercesV0', 'xercesV1']
 
-precision_cart_original = [15, 54, 42, 30, 38, 21, 56, 32, 6, 95, 67, 65, 72, 50, 39, 17, 72]
-precision_rf_original = [21, 67, 56, 28, 34, 23, 52, 32, 4, 95, 63, 67, 78, 60, 40, 28, 78]
-
-precision_cart = []
-precision_rf = []
-precision_lr = []
+f_score_cart = []
+f_score_rf = []
+f_score_lr = []
 
 
 # CART
@@ -26,11 +23,11 @@ def cart(a, b, c, d):
     pred = ct.predict(c)
     # print "Predicted Matrix : "  + str(pred)
 
-    p = precision_score(d, pred, average='weighted')
+    p = f1_score(d, pred, average='weighted')
     # p = accuracy_score(d, pred)
 
     # print p
-    precision_cart.append(p * 100)
+    f_score_cart.append(p * 100)
 
 
 # Random Forest
@@ -42,11 +39,11 @@ def random_forest(a, b, c, d):
     pred = rf.predict(c)
     # print "Predicted Matrix : "  + str(pred)
 
-    p = precision_score(d, pred, average='weighted')
+    p = f1_score(d, pred, average='weighted')
     # p = accuracy_score(d, pred)
 
     # print p
-    precision_rf.append(p * 100)
+    f_score_rf.append(p * 100)
 
 
 # Logistic Regression
@@ -58,12 +55,12 @@ def logistic_regression(a, b, c, d):
     pred = lr.predict(c)
     # print "Predicted Matrix : "  + str(pred)
 
-    p = precision_score(d, pred, average='weighted')
+    p = f1_score(d, pred, average='weighted')
     # p = accuracy_score(d, pred)
 
     # print p
     # print "\n"
-    precision_lr.append(p * 100)
+    f_score_lr.append(p * 100)
 
 
 def perform_calculation(loc_train, loc_test):
@@ -151,17 +148,17 @@ sequence = ["Dataset", "Logistics Regression"]
 t = PrettyTable(sequence)
 
 for i in range(0,len(dataset)):
-    t.add_row([dataset[i], precision_lr[i]])
+    t.add_row([dataset[i], f_score_lr[i]])
 
 print t
 
 # Print table for Random Forest and Cart
-sequence = ["Dataset", "Cart Precision (Paper)", "Cart (Our Model)", "Delta Cart", "Random Forest (Paper)", "Random Forest (Our Model)", "Delta Random Forest"]
+sequence = ["Dataset", "Cart (Our Model)", "Random Forest (Our Model)"]
 
 t = PrettyTable(sequence)
 
 for i in range(0,len(dataset)):
-    t.add_row([dataset[i], precision_cart_original[i], precision_cart[i], abs(precision_cart_original[i] - precision_cart[i]), precision_rf_original[i], precision_rf[i], abs(precision_rf_original[i] - precision_rf[i])])
+    t.add_row([dataset[i], f_score_cart[i], f_score_rf[i]])
 
 
 print t
