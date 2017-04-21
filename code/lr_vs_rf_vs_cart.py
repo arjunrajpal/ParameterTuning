@@ -94,57 +94,68 @@ def perform_calculation(loc_train, loc_test):
 
 
 # antV0
-perform_calculation("/home/dushyant/Desktop/Github/ParameterTuning/combined_dataset_modified/antV0/1.csv", "/home/dushyant/Desktop/Github/ParameterTuning/combined_dataset_modified/antV0/3.csv")
+perform_calculation("../combined_dataset_modified/antV0/1.csv", "../combined_dataset_modified/antV0/3.csv")
 
 # antV1
-perform_calculation("/home/dushyant/Desktop/Github/ParameterTuning/combined_dataset_modified/antV1/2.csv", "/home/dushyant/Desktop/Github/ParameterTuning/combined_dataset_modified/antV1/4.csv")
+perform_calculation("../combined_dataset_modified/antV1/2.csv", "../combined_dataset_modified/antV1/4.csv")
 
 # antV2
-perform_calculation("/home/dushyant/Desktop/Github/ParameterTuning/combined_dataset_modified/antV2/3.csv", "/home/dushyant/Desktop/Github/ParameterTuning/combined_dataset_modified/antV2/5.csv")
+perform_calculation("../combined_dataset_modified/antV2/3.csv", "../combined_dataset_modified/antV2/5.csv")
 
 # camelV0
-perform_calculation("/home/dushyant/Desktop/Github/ParameterTuning/combined_dataset_modified/camelV0/1.csv", "/home/dushyant/Desktop/Github/ParameterTuning/combined_dataset_modified/camelV0/3.csv")
+perform_calculation("../combined_dataset_modified/camelV0/1.csv", "../Combined_dataset_modified/camelV0/3.csv")
 
 # camelV1
-perform_calculation("/home/dushyant/Desktop/Github/ParameterTuning/combined_dataset_modified/camelV1/2.csv", "/home/dushyant/Desktop/Github/ParameterTuning/combined_dataset_modified/camelV1/4.csv")
+perform_calculation("../combined_dataset_modified/camelV1/2.csv", "../combined_dataset_modified/camelV1/4.csv")
 
 # ivy
-perform_calculation("/home/dushyant/Desktop/Github/ParameterTuning/combined_dataset_modified/ivy/1.csv", "/home/dushyant/Desktop/Github/ParameterTuning/combined_dataset_modified/ivy/3.csv")
+perform_calculation("../combined_dataset_modified/ivy/1.csv", "../combined_dataset_modified/ivy/3.csv")
 
 # jeditV0
-perform_calculation("/home/dushyant/Desktop/Github/ParameterTuning/combined_dataset_modified/jeditV0/1.csv", "/home/dushyant/Desktop/Github/ParameterTuning/combined_dataset_modified/jeditV0/3.csv")
+perform_calculation("../combined_dataset_modified/jeditV0/1.csv", "../combined_dataset_modified/jeditV0/3.csv")
 
 # jeditV1
-perform_calculation("/home/dushyant/Desktop/Github/ParameterTuning/combined_dataset_modified/jeditV1/2.csv", "/home/dushyant/Desktop/Github/ParameterTuning/combined_dataset_modified/jeditV1/4.csv")
+perform_calculation("../combined_dataset_modified/jeditV1/2.csv", "../combined_dataset_modified/jeditV1/4.csv")
 
 # jeditV2
-perform_calculation("/home/dushyant/Desktop/Github/ParameterTuning/combined_dataset_modified/jeditV2/3.csv", "/home/dushyant/Desktop/Github/ParameterTuning/combined_dataset_modified/jeditV2/5.csv")
+perform_calculation("../combined_dataset_modified/jeditV2/3.csv", "../combined_dataset_modified/jeditV2/5.csv")
 
 # log4j
-perform_calculation("/home/dushyant/Desktop/Github/ParameterTuning/combined_dataset_modified/log4j/1.csv", "/home/dushyant/Desktop/Github/ParameterTuning/combined_dataset_modified/log4j/3.csv")
+perform_calculation("../combined_dataset_modified/log4j/1.csv", "../combined_dataset_modified/log4j/3.csv")
 
 # lucene
-perform_calculation("/home/dushyant/Desktop/Github/ParameterTuning/combined_dataset_modified/lucene/1.csv", "/home/dushyant/Desktop/Github/ParameterTuning/combined_dataset_modified/lucene/3.csv")
+perform_calculation("../combined_dataset_modified/lucene/1.csv", "../combined_dataset_modified/lucene/3.csv")
 
 # poiV0
-perform_calculation("/home/dushyant/Desktop/Github/ParameterTuning/combined_dataset_modified/poiV0/1.csv", "/home/dushyant/Desktop/Github/ParameterTuning/combined_dataset_modified/poiV0/3.csv")
+perform_calculation("../combined_dataset_modified/poiV0/1.csv", "../combined_dataset_modified/poiV0/3.csv")
 
 # poiV1
-perform_calculation("/home/dushyant/Desktop/Github/ParameterTuning/combined_dataset_modified/poiV1/2.csv", "/home/dushyant/Desktop/Github/ParameterTuning/combined_dataset_modified/poiV1/4.csv")
+perform_calculation("../combined_dataset_modified/poiV1/2.csv", "../combined_dataset_modified/poiV1/4.csv")
 
 # synapse
-perform_calculation("/home/dushyant/Desktop/Github/ParameterTuning/combined_dataset_modified/synapse/1.csv", "/home/dushyant/Desktop/Github/ParameterTuning/combined_dataset_modified/synapse/3.csv")
+perform_calculation("../combined_dataset_modified/synapse/1.csv", "../combined_dataset_modified/synapse/3.csv")
 
 # velocity
-perform_calculation("/home/dushyant/Desktop/Github/ParameterTuning/combined_dataset_modified/velocity/1.csv", "/home/dushyant/Desktop/Github/ParameterTuning/combined_dataset_modified/velocity/3.csv")
+perform_calculation("../combined_dataset_modified/velocity/1.csv", "../combined_dataset_modified/velocity/3.csv")
 
 # xercesV0
-perform_calculation("/home/dushyant/Desktop/Github/ParameterTuning/combined_dataset_modified/xercesV0/1.csv", "/home/dushyant/Desktop/Github/ParameterTuning/combined_dataset_modified/xercesV0/3.csv")
+perform_calculation("../combined_dataset_modified/xercesV0/1.csv", "../combined_dataset_modified/xercesV0/3.csv")
 
 # xercesV1
-perform_calculation("/home/dushyant/Desktop/Github/ParameterTuning/combined_dataset_modified/xercesV1/2.csv", "/home/dushyant/Desktop/Github/ParameterTuning/combined_dataset_modified/xercesV1/4.csv")
+perform_calculation("../combined_dataset_modified/xercesV1/2.csv", "../combined_dataset_modified/xercesV1/4.csv")
 
 
+# Print table for Logistics Regression
+sequence = ["Dataset", "Logistics Regression"]
+
+t = PrettyTable(sequence)
+
+for i in range(0,len(dataset)):
+    t.add_row([dataset[i], precision_lr[i]])
+
+print t
+
+# Print table for Random Forest and Cart
 sequence = ["Dataset", "Cart Precision (Paper)", "Cart (Our Model)", "Delta Cart", "Random Forest (Paper)", "Random Forest (Our Model)", "Delta Random Forest"]
 
 t = PrettyTable(sequence)
