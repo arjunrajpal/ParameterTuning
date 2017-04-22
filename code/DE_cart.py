@@ -8,6 +8,18 @@ from data import data
 import random
 from prettytable import PrettyTable
 
+class color:
+   PURPLE = '\033[95m'
+   CYAN = '\033[96m'
+   DARKCYAN = '\033[36m'
+   BLUE = '\033[94m'
+   GREEN = '\033[92m'
+   YELLOW = '\033[93m'
+   RED = '\033[91m'
+   BOLD = '\033[1m'
+   UNDERLINE = '\033[4m'
+   END = '\033[0m'
+
 # np, f, cr, life, Goal, noOfParameters = 10, 0.75, 0.3, 5, [], 0 #input
 # sBest = [] #ouput
 
@@ -19,14 +31,14 @@ global_best= []
 
 # Runs Random Forest on the dataset using parameters present in candidate
 def cart(a, b, c, d, candidate):
-    print "Candidate in Cart : " + str(candidate)
-    # value_threshold = nump.random.uniform(0.01, 1)
-    # print "Threshold :" + str(value_threshold)
-    print "Threshold :" + str(candidate["tunings"][0])
-    print "Max feature : " + str(candidate["tunings"][1])
-    print "Min sample split : " + str(candidate["tunings"][2])
-    print "Min samples leaf : " + str(candidate["tunings"][3])
-    print "Max depth : " + str(candidate["tunings"][4])
+    # print "\nCandidate in Cart : " + str(candidate)
+    # # value_threshold = nump.random.uniform(0.01, 1)
+    # # print "Threshold :" + str(value_threshold)
+    # print "Threshold :" + str(candidate["tunings"][0])
+    # print "Max feature : " + str(candidate["tunings"][1])
+    # print "Min sample split : " + str(candidate["tunings"][2])
+    # print "Min samples leaf : " + str(candidate["tunings"][3])
+    # print "Max depth : " + str(candidate["tunings"][4])
 
     ct = DecisionTreeClassifier(max_depth=candidate["tunings"][4], min_samples_split=candidate["tunings"][2], min_samples_leaf=candidate["tunings"][3], max_features=candidate["tunings"][1], min_impurity_split=candidate["tunings"][0])
     ct.fit(a, b)
@@ -39,9 +51,9 @@ def cart(a, b, c, d, candidate):
 
 # Retrieves the appropriate dataset from readDataset function present in data.py and passes
 # the Training and Testing dataset to Random Forest function
-def score(candidate, datasets):
+def score(candidate, dataset):
 
-    df1, df2 = data.readDataset(datasets)
+    df1, df2 = data.readDataset(dataset)
 
     # Training Set
     X_Train_DF = df1.ix[:, 3:23]
@@ -62,9 +74,9 @@ def score(candidate, datasets):
     return p
 
 
-def score_test(candidate, datasets):
+def score_test(candidate, dataset):
 
-    df1, df2 = data.readDataset_for_testing(datasets)
+    df1, df2 = data.readDataset_for_testing(dataset)
 
     # Training Set
     X_Train_DF = df1.ix[:, 3:23]
@@ -96,23 +108,23 @@ def initialisePopulation(np,noOfParameters):
         # tunings.append(nump.random.uniform(algoParameters[0]['low'], algoParameters[0]['high']))
 
         threshold= nump.random.uniform(algoParameters[0]['low'], algoParameters[0]['high'])
-        print "Threshold for index " + str(i) + " : " + str(threshold)
+        # print "Threshold for index " + str(i) + " : " + str(threshold)
         tunings.append(threshold)
 
         max_feature = int(nump.random.uniform(algoParameters[1]['low'], algoParameters[1]['high']))
-        print "Max Feature selected for index " + str(i) + " : " + str(max_feature)
+        # print "Max Feature selected for index " + str(i) + " : " + str(max_feature)
         tunings.append(max_feature)
 
         min_sample_split = int(nump.random.uniform(algoParameters[2]['low'], algoParameters[2]['high']))
-        print "Max Leaf Nodes for index " + str(i) + " : " + str(min_sample_split)
+        # print "Max Leaf Nodes for index " + str(i) + " : " + str(min_sample_split)
         tunings.append(min_sample_split)
 
         min_samples_leaf = int(nump.random.uniform(algoParameters[3]['low'], algoParameters[3]['high']))
-        print "Min sample split for index " + str(i) + " : " + str(min_samples_leaf)
+        # print "Min sample split for index " + str(i) + " : " + str(min_samples_leaf)
         tunings.append(min_samples_leaf)
 
         max_depth = int(nump.random.uniform(algoParameters[4]['low'], algoParameters[4]['high']))
-        print "Min samples leaf for index " + str(i) + " : " + str(max_depth)
+        # print "Min samples leaf for index " + str(i) + " : " + str(max_depth)
         tunings.append(max_depth)
 
         # population[i]['tunings']
@@ -122,8 +134,8 @@ def initialisePopulation(np,noOfParameters):
 
         population.append(candidate)
 
-    print "Population"
-    print population
+    # print "Population"
+    # print population
 
     return population
 
@@ -171,23 +183,23 @@ def getBestSolution(population):
 
 # Creates a mutant whose each parameter value is either taken from the target candidate(old) or is
 # computed using (a+f*(b-c)) depending on value of cr
-def extrapolate(old, pop, cr, f, noOfParameters, index):
+def extrapolate(old, pop, cr, f, noOfParameters, index, dataset):
     a, b, c = threeOthers(pop, old, index)  # index is for the target row
 
     newf = []
 
-    print "\nThe other 3 selected rows for index " + str(index) + " : "
-    print a
-    print b
-    print c
+    # print "\nThe other 3 selected rows for index " + str(index) + " : "
+    # print a
+    # print b
+    # print c
 
     for i in range(0, noOfParameters):
 
         x = nump.random.uniform(0, 1)
-        print "Random number for comparison with cr : " + str(x)
+        # print "Random number for comparison with cr : " + str(x)
 
         if cr < x:
-            print "Old tuning Value for index " + str(index) + " : " + (str(old['tunings'][i]))
+            # print "Old tuning Value for index " + str(index) + " : " + (str(old['tunings'][i]))
             newf.append(old['tunings'][i])
 
         elif type(old['tunings'][i]) == bool:
@@ -197,37 +209,37 @@ def extrapolate(old, pop, cr, f, noOfParameters, index):
             hi = algoParameters[i]["high"]
             value = a[i] + (f * (b[i] - c[i]))
 
-            print "Value before trim : " + str(value)
+            # print "Value before trim : " + str(value)
 
             if i != 0:
                 mutant_value = int(max(lo, min(value, hi)))
             else:
                 mutant_value = max(lo, min(value, hi))
 
-            print "Mutant Value : " + str(mutant_value)
+            # print "Mutant Value : " + str(mutant_value)
 
             newf.append(mutant_value)
 
     dict_mutant = {'tunings': newf}
-    score_mutant = score(dict_mutant, datasets)
+    score_mutant = score(dict_mutant, dataset)
 
-    score_original = score(old, datasets)
+    score_original = score(old, dataset)
 
-    print "Original Score : " + str(score_original)
-    print "Mutant Score : " + str(score_mutant)
+    # print "Original Score : " + str(score_original)
+    # print "Mutant Score : " + str(score_mutant)
 
     global global_best
     global global_best_score
 
     if score_mutant > score_original:
-        global_best_score.append(score_mutant)
-        global_best.append({'score': score_mutant, 'tunings': newf})
+        global_best_score.append(score_mutant * 100)
+        global_best.append({'score': score_mutant * 100, 'tunings': newf})
 
     else:
         global_best_score.append(score_original)
-        global_best.append({'score': score_original, 'tunings': old["tunings"]})
+        global_best.append({'score': score_original * 100, 'tunings': old["tunings"]})
 
-    print global_best
+    # print global_best
 
     # newCandidate = {'score': 0, 'tunings': newf}
     # print newCandidate
@@ -235,7 +247,7 @@ def extrapolate(old, pop, cr, f, noOfParameters, index):
 
 
 # Performs Differential Evolution
-def DE(np, f, cr, life, noOfParameters, datasets):
+def DE(np, f, cr, life, noOfParameters, dataset):
 
     population = initialisePopulation(np, noOfParameters)  # Intial population formation
 
@@ -247,10 +259,10 @@ def DE(np, f, cr, life, noOfParameters, datasets):
         global_best_score = []
 
         for i in range(0, np):
-            extrapolate(population[i], population, cr, f, noOfParameters, i)
+            extrapolate(population[i], population, cr, f, noOfParameters, i, dataset)
 
-        print "Global Best :"
-        print global_best
+        # print "Global Best :"
+        # print global_best
 
         oldPopulation = []
         globalPopulation = []
@@ -261,15 +273,15 @@ def DE(np, f, cr, life, noOfParameters, datasets):
         for row in global_best:
             globalPopulation.append(row['tunings'])
 
-        print "Old Population :"
-        print oldPopulation
-
-        print "Global Population :"
-        print globalPopulation
+        # print "Old Population :"
+        # print oldPopulation
+        #
+        # print "Global Population :"
+        # print globalPopulation
 
         if oldPopulation != globalPopulation:
             population = global_best
-            print population
+            # print population
         else:
           life -= 1
 
@@ -277,28 +289,28 @@ def DE(np, f, cr, life, noOfParameters, datasets):
 
     return s_Best
 
+
 # Sets the valid range for each parameter of the machine learning algorithm
-algoParameters = [{'low': 0, 'high': 1},{'low': 1, 'high': 17}, {'low': 2, 'high': 20}, {'low': 1, 'high': 20}, {'low': 1, 'high': 50}]
+algoParameters = [{'low': 0, 'high': 1}, {'low': 1, 'high': 20}, {'low': 2, 'high': 20}, {'low': 1, 'high': 20},
+                  {'low': 1, 'high': 50}]
 
 # Invokes DE
 
-datasets = raw_input("Enter dataset : ")
-datasets = int(datasets)
+print "Precision Cart"
 
-parameters = DE(10, 0.75, 0.3, 5, 5, datasets)
+def calculate():
+    all_data_precision_cart = []
 
-print "\nBest Parameters for Cart in dataset ",datasets," are ", parameters
-print score_test(parameters, datasets)
+    for i in range(0, 17):
+        dataset = i
+        parameters = DE(10, 0.75, 0.3, 5, 5, dataset)
+        score_p = (score_test(parameters, dataset) * 100)
+        # print color.BOLD + color.CYAN + "\nBest Parameters for Cart in dataset ", str(dataset + 1), " are ", str(parameters) + color.END
+        # print color.BOLD + color.GREEN + "Precision Score : " + str(score_p) + color.END + "\n"
+        all_data_precision_cart.append(score_p)
 
-# dataset = ['antV0', 'antV1', 'antV2', 'camelV0', 'camelV1', 'ivy', 'jeditV0', 'jeditV1', 'jeditV2', 'log4j', 'lucene', 'poiV0', 'poiV1', 'synapse', 'velocity', 'xercesV0', 'xercesV1']
-#
-# sequence = ["Dataset", "Precision", "Best Parameters"]
-# t = PrettyTable(sequence)
-#
-# for datasets in nump.arange(0,17):
-#
-#     parameters = DE(10, 0.75, 0.3, 5, 5, datasets)
-#
-#     t.add_row([dataset[datasets], score_test(parameters, datasets), parameters])
-#
-# print t
+    return all_data_precision_cart
+
+if __name__ == "__main__":
+    calculate()
+
