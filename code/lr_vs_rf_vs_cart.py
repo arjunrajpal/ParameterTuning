@@ -9,12 +9,6 @@ from prettytable import PrettyTable
 
 dataset = ['antV0', 'antV1', 'antV2', 'camelV0', 'camelV1', 'ivy', 'jeditV0', 'jeditV1', 'jeditV2', 'log4j', 'lucene', 'poiV0', 'poiV1', 'synapse', 'velocity', 'xercesV0', 'xercesV1']
 
-precision_cart_original = [15, 54, 42, 30, 38, 21, 56, 32, 6, 95, 67, 65, 72, 50, 39, 17, 72]
-precision_rf_original = [21, 67, 56, 28, 34, 23, 52, 32, 4, 95, 63, 67, 78, 60, 40, 28, 78]
-
-fscore_cart_original = [20, 37, 45, 39, 38, 28, 56, 44, 10, 53, 65, 31, 68, 43, 53, 19, 34]
-fscore_rf_original = [28, 38, 57, 40, 42, 35, 63, 46, 8, 60, 70, 45, 77, 52, 56, 34, 42]
-
 precision_cart = []
 precision_rf = []
 precision_lr = []
@@ -22,6 +16,18 @@ precision_lr = []
 fscore_cart = []
 fscore_rf = []
 fscore_lr = []
+
+class color:
+   PURPLE = '\033[95m'
+   CYAN = '\033[96m'
+   DARKCYAN = '\033[36m'
+   BLUE = '\033[94m'
+   GREEN = '\033[92m'
+   YELLOW = '\033[93m'
+   RED = '\033[91m'
+   BOLD = '\033[1m'
+   UNDERLINE = '\033[4m'
+   END = '\033[0m'
 
 # CART
 
@@ -161,31 +167,25 @@ def calculate_all():
     perform_calculation("../combined_dataset_modified/xercesV1/2.csv", "../combined_dataset_modified/xercesV1/4.csv")
 
     # Print Precision table for Cart, Random Forest and Logistic Regression
-    sequence_precision = ["Dataset", "Cart (Paper)", "Cart (Our Model)", "Delta Cart", "RF (Paper)", "RF (Our Model)",
-                          "Delta RF"]
+    sequence_precision = ["Dataset", "Logistic Regression", "Cart", "Random Forest"]
 
     t_precision = PrettyTable(sequence_precision)
 
     for i in range(0, len(dataset)):
-        t_precision.add_row([dataset[i], precision_cart_original[i], precision_cart[i],
-                             abs(precision_cart_original[i] - precision_cart[i]), precision_rf_original[i],
-                             precision_rf[i], abs(precision_rf_original[i] - precision_rf[i])])
+        t_precision.add_row([dataset[i],precision_lr[i], precision_cart[i], precision_rf[i]])
 
-    print "Table for Precision comparison for Untuned Learner"
+    print color.BOLD + color.CYAN + "\nTable for Precision comparison for Untuned Learner" + color.END
     print str(t_precision) + "\n"
 
     # Print fscore table for Cart, Random Forest
-    sequence_fscore = ["Dataset", "Cart (Paper)", "Cart (Our Model)", "Delta Cart", "RF (Paper)", "RF (Our Model)",
-                       "Delta RF"]
+    sequence_fscore = ["Dataset", "Logistic Regression", "Cart", "Random Forest"]
 
     t_fscore = PrettyTable(sequence_fscore)
 
     for i in range(0, len(dataset)):
-        t_fscore.add_row(
-            [dataset[i], fscore_cart_original[i], fscore_cart[i], abs(fscore_cart_original[i] - fscore_cart[i]),
-             fscore_rf_original[i], fscore_rf[i], abs(fscore_rf_original[i] - fscore_rf[i])])
+        t_fscore.add_row([dataset[i], fscore_lr[i], fscore_cart[i], fscore_rf[i]])
 
-    print "Table for fscore comparison for Untuned Learner"
+    print color.BOLD + color.CYAN + "\nTable for fscore comparison for Untuned Learner" + color.END
     print t_fscore
 
     return precision_cart,precision_rf, precision_lr,fscore_cart,fscore_rf,fscore_lr

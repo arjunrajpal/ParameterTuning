@@ -302,8 +302,6 @@ def calculate():
         dataset = i
         parameters = DE(10, 0.75, 0.3, 5, 5, dataset)
         score_p = (score_test(parameters, dataset) * 100)
-        # print color.BOLD + color.CYAN + "\nBest Parameters for Cart in dataset ", str(dataset + 1), " are ", str(parameters) + color.END
-        # print color.BOLD + color.GREEN + "Precision Score : " + str(score_p) + color.END + "\n"
         all_data_fscore_cart.append(score_p)
 
     return all_data_fscore_cart

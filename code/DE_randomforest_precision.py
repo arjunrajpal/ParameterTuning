@@ -1,6 +1,6 @@
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.metrics import precision_score,f1_score
+from sklearn.metrics import precision_score
 import pandas as pd
 import numpy as nump
 import math
@@ -45,7 +45,7 @@ def random_forest(a, b, c, d, candidate):
     rf.fit(a, b)
     pred = rf.predict(c)
     # print "Predicted Matrix : "  + str(pred)
-    p = f1_score(d, pred, average='weighted')
+    p = precision_score(d, pred, average='weighted')
 
     return p
 
@@ -304,15 +304,13 @@ algoParameters = [{'low': 0.01, 'high': 1}, {'low': 1, 'high': 20}, {'low': 2, '
 
 all_data_precision_rf = []
 
-print "Fscore Random Forest"
+print "Precision Random Forest"
 
 def calculate():
     for i in range(0, 17):
         dataset = i
         parameters = DE(10, 0.75, 0.3, 5, 6, dataset)
         score_p = (score_test(parameters, dataset) * 100)
-        print color.BOLD + color.CYAN + "\nBest Parameters for Random Forest in dataset ", str(dataset + 1), " are ", str(parameters) + color.END
-        print color.BOLD + color.GREEN + "Precision Score : " + str(score_p) + color.END + "\n"
         all_data_precision_rf.append(score_p)
 
 if __name__ == "__main__":
