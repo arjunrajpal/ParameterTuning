@@ -1,7 +1,5 @@
 import matplotlib.pyplot as plt
 import lr_vs_rf_vs_cart
-import DE_randomforest_precision
-import DE_randomforest_fscore
 import DE_cart_precision
 import DE_cart_fscore
 

@@ -1,12 +1,8 @@
-from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import precision_score
-import pandas as pd
 import numpy as nump
-import math
 from data import data
 import random
-from prettytable import PrettyTable
 
 class color:
    PURPLE = '\033[95m'
@@ -307,6 +303,7 @@ def calculate():
         score_p = (score_test(parameters, dataset) * 100)
         all_data_precision_cart.append(score_p)
 
+    print all_data_precision_cart
     return all_data_precision_cart
 
 if __name__ == "__main__":
