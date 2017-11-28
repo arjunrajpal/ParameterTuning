@@ -9,6 +9,7 @@ from random import random, randint
 
 global_data = []
 
+
 def cart(a, b, c, d, tunings):
     # print "\nCandidate in Cart : " + str(candidate)
     # # value_threshold = nump.random.uniform(0.01, 1)
