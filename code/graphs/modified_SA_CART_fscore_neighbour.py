@@ -98,8 +98,8 @@ def score_test(candidate, dataset):
 
 
 def acceptance_probability(cost,new_cost,T):
-    delta_cost = cost - new_cost
-    ap = nump.exp(delta_cost / T)
+    delta_cost = new_cost-cost
+    ap = nump.exp(delta_cost/T)
 
     return ap
 
