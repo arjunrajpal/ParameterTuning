@@ -189,7 +189,7 @@ def SA(no_of_iterations, T, T_min, alpha, no_of_parameters, dataset):
 
             new_solution['cost'] = score(new_solution,dataset)
 
-            if new_solution['cost']<solution['cost']:
+            if new_solution['cost']  > solution['cost']:
                 solution = new_solution
             else:
                 ap = acceptance_probability(solution['cost'],new_solution['cost'],T)

@@ -9,6 +9,7 @@ from data import data
 # import random
 from prettytable import PrettyTable
 
+
 def initialiseSolution(no_of_parameters):
 
 	tunings = []
@@ -137,8 +138,10 @@ def fast_schedule(tunings,no_of_parameters,T):
 
     return new_solution
 
+
 def update_temp_cauchy_schedule(k,T):
     return T/(1+k)
+
 
 def cauchy_schedule(tunings,T,learning_rate=0.5):
     u = nump.random.uniform(-(math.pi/2),math.pi/2,size=nump.asarray(tunings).shape)
@@ -162,6 +165,8 @@ def cauchy_schedule(tunings,T,learning_rate=0.5):
     new_solution = {"tunings":tunings}
 
     return new_solution
+
+
 
 def SA(no_of_iterations,T,T_min,alpha,no_of_parameters,dataset):
 
@@ -202,6 +207,7 @@ algoParameters = [{'low': 0.01, 'high': 1}, {'low': 1, 'high': 20}, {'low': 2, '
 all_data_precision_rf = []
 
 print "Precision Random Forest using Cauchy schedule"
+
 
 def calculate():
     for i in range(0, 17):
