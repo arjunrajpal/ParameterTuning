@@ -175,6 +175,7 @@ def cauchy_schedule(tunings,T,learning_rate=0.5):
 
 def SA(no_of_iterations, T, T_min, alpha, no_of_parameters, dataset):
 
+    T_initial = T
     solution = initialiseSolution(no_of_parameters)
     solution['cost'] = score(solution,dataset)
 
@@ -182,7 +183,6 @@ def SA(no_of_iterations, T, T_min, alpha, no_of_parameters, dataset):
 
     while T>T_min:
 
-        count += 1
         i=1
         while i<= no_of_iterations:
 
@@ -200,7 +200,8 @@ def SA(no_of_iterations, T, T_min, alpha, no_of_parameters, dataset):
             i = i+1
 
         # print "Iteration at Temp" + str(T)
-        T = update_temp_fast_schedule(count,T)
+        T = update_temp_fast_schedule(count,T_initial)
+        count += 1
 
     return solution
 

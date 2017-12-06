@@ -182,7 +182,6 @@ def SA(no_of_iterations, T, T_min, alpha, no_of_parameters, dataset):
 
     while T>T_min:
 
-        count += 1
         i=1
         while i<= no_of_iterations:
 
@@ -201,6 +200,7 @@ def SA(no_of_iterations, T, T_min, alpha, no_of_parameters, dataset):
 
         # print "Iteration at Temp" + str(T)
         T = T*alpha
+        count += 1
 
     return solution
 

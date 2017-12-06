@@ -175,6 +175,7 @@ def cauchy_schedule(tunings,T,learning_rate=0.5):
 
 def SA(no_of_iterations, T, T_min, alpha, no_of_parameters, dataset):
 
+    T_initial = T
     solution = initialiseSolution(no_of_parameters)
     solution['cost'] = score(solution,dataset)
 
@@ -182,7 +183,6 @@ def SA(no_of_iterations, T, T_min, alpha, no_of_parameters, dataset):
 
     while T>T_min:
 
-        count += 1
         i=1
         while i<= no_of_iterations:
             # new_solution = neighbour(solution['tunings'],no_of_parameters)
@@ -203,9 +203,10 @@ def SA(no_of_iterations, T, T_min, alpha, no_of_parameters, dataset):
 
         # print "Iteration at Temp" + str(T)
         # T = T*alpha
-        # T = update_temp_fast_schedule(count,T)
-        T = update_temp_cauchy_schedule(count,T)
-
+        # T = update_temp_fast_schedule(count,T_initial)
+        T = update_temp_cauchy_schedule(count,T_initial)
+        count += 1
+        
     return solution
 
 # Sets the valid range for each parameter of the machine learning algorithm
@@ -217,7 +218,7 @@ algoParameters = [{'low': 0, 'high': 1}, {'low': 1, 'high': 5}, {'low': 2, 'high
 
 all_data_fscore_CART = []
 
-print "Fscore CART cauchy schedule"
+print "Fscore CART Cauchy schedule"
 
 
 def calculate():
