@@ -207,7 +207,7 @@ def calculate():
         dataset = i
         parameters = SA(100, 1.0, 0.00001, 0.9, 6, dataset)
         score_p = (score_test(parameters, dataset) * 100)
-        # print "Dataset :" + str(i) + " Parameters :" + str(parameters) + " Score :" + str(score_p)
+        print "Dataset :" + str(i) + " Parameters :" + str(parameters) + " Score :" + str(score_p)
         all_data_precision_rf.append(score_p)
 
     print all_data_precision_rf
