@@ -1,1 +1,2 @@
 # ParameterTuning
+We apply two optimization algorithms - Differential Evolution and Simulated Annealing on two machine learning algorithms - Random Forest and CART to optmize their precision and f-score.
